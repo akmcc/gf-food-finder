@@ -1,7 +1,15 @@
 <html>
 <head>
+  <style>
+    input{
+      display: block;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
+  <h1>GF Food Finder</h1>
+  <p>Are you in a new city and afriad of starving? I can try to help. But I make no promises.</p>
   <form>
     <label for="craving">What are you in the mood for?</label>
     <input type="text", name="craving" />
@@ -9,5 +17,10 @@
     <input type="text", name="location" />
     <input type="submit", value="Find me food!" />
   </form>
+  <div>
+    
+    <%= gf_places %>
+  
+  </div>
 </body>
 </html>
