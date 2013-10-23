@@ -1,10 +1,8 @@
-require 'rubygems'
-require 'oauth'
 require 'json'
 require 'cgi'
 require 'sinatra'
 require 'sinatra/reloader'
-require_relative 'secrets'
+require_relative '../../secrets'
 
 
 
@@ -31,5 +29,3 @@ def get_businesses
    
   
 end
-
-##this oauth process will not work due to token expiring... ugh.

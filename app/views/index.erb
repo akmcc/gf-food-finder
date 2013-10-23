@@ -1,24 +1,6 @@
 <html>
 <head>
-  <style>
-    input{
-      display: block;
-      margin: 10px;
-    }
-    p {
-      margin: 8px;
-    }
-    div.place {
-      margin: 30px auto;
-    }
-    p.name {
-      font-size: 20px;
-    }
-
-    p.address {
-      margin: 1px 8;
-    }
-  </style>
+ <link rel="stylesheet" type="text/css" href="../../public/css/styles.css" />
 </head>
 <body>
   <h1>GF Food Finder</h1>
@@ -31,12 +13,14 @@
     <input type="submit", value="Find me food!" />
   </form>
   <div>
-    
+    <% if @location.nil? && @craving.nil? %>
+      <p>You haven't searched for anything yet.</p>
+    <% elsif !@location.nil? %> <!--this is to prevent errors due to gf_places not being defined until AFTER a serach occurs -->
     <% gf_places.each do |place|  %>
-   <div class="place">
+    <div class="place">
       <p class="name"><%=place["name"]%></p>
       <div class="address">
-      <% place["location"]["display_address"].each do |line|%>
+        <% place["location"]["display_address"].each do |line|%>
         <p class="address"><%= line %></p>
         <% end %>
       </div>
@@ -45,7 +29,8 @@
       <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>  
     </div>
     <%end%>
-  
+    <%end%>
+
   </div>
 </body>
 </html>

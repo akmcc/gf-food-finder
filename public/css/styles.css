@@ -1,0 +1,17 @@
+  input{
+    display: block;
+    margin: 10px;
+  }
+  p {
+    margin: 8px;
+  }
+  div.place {
+    margin: 30px auto;
+  }
+  p.name {
+    font-size: 20px;
+  }
+
+  p.address {
+    margin: 1px 8;
+  }
