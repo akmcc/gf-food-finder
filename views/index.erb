@@ -5,6 +5,19 @@
       display: block;
       margin: 10px;
     }
+    p {
+      margin: 8px;
+    }
+    div.place {
+      margin: 30px auto;
+    }
+    p.name {
+      font-size: 20px;
+    }
+
+    p.address {
+      margin: 1px 8;
+    }
   </style>
 </head>
 <body>
@@ -20,10 +33,16 @@
   <div>
     
     <% gf_places.each do |place|  %>
-   <div id="place">
-    <p class="name"><%=place["name"]%></p>
-      <p class="rating"><%= place["rating"]%></p>
-      <p class="reviews"><a  href=<%= place["url"]%> target="_blank">Click here for reviews on Yelp</a></p>  
+   <div class="place">
+      <p class="name"><%=place["name"]%></p>
+      <div class="address">
+      <% place["location"]["display_address"].each do |line|%>
+        <p class="address"><%= line %></p>
+        <% end %>
+      </div>
+      <p class="phone"><%= place["display_phone"]%></p>
+      <p class="rating">Yelp rating: <%= place["rating"]%></p>
+      <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>  
     </div>
     <%end%>
   
