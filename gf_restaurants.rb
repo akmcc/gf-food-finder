@@ -10,15 +10,17 @@ require_relative 'secrets'
 
 
 get "/" do
-  craving = params['craving']
-  location = params['location']
-  gf_places = get_businesses(craving, location)
+  @craving = params['craving']
+  @location = params['location']
+  if !@craving.nil? && !@location.nil?
+    gf_places = get_businesses["businesses"]
+  end
   erb :index, :locals => {:gf_places => gf_places}
 end
 
-def get_businesses(craving, location)
-  if !craving.nil? && !location.nil?
-    path = "/v2/search?term=#{CGI.escape(craving)}&location=#{CGI.escape(location)}&sort=2&category_filter=gluten_free&limit=10"
+def get_businesses
+  
+    path = "/v2/search?term=#{CGI.escape(@craving)}&location=#{CGI.escape(@location)}&sort=2&category_filter=gluten_free&limit=10"
     
     api_host = 'api.yelp.com'
 
@@ -27,7 +29,7 @@ def get_businesses(craving, location)
 
    JSON.parse(@access_token.get(path).body)
    
-  end
+  
 end
 
 ##this oauth process will not work due to token expiring... ugh.

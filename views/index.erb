@@ -19,7 +19,13 @@
   </form>
   <div>
     
-    <%= gf_places %>
+    <% gf_places.each do |place|  %>
+   <div id="place">
+    <p class="name"><%=place["name"]%></p>
+      <p class="rating"><%= place["rating"]%></p>
+      <p class="reviews"><a  href=<%= place["url"]%> target="_blank">Click here for reviews on Yelp</a></p>  
+    </div>
+    <%end%>
   
   </div>
 </body>
