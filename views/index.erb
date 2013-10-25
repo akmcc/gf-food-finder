@@ -14,9 +14,9 @@
     <input type="submit", value="Find me food!" />
   </form>
   <div>
-    <% if @location.nil? && @craving.nil? %>
+    <% if location.nil? && craving.nil? %>
       <p>You haven't searched for anything yet.</p>
-    <% elsif !@location.nil? %> <!--this is to prevent errors due to gf_places not being defined until AFTER a serach occurs -->
+    <% else %><!--this is to prevent errors due to gf_places not being defined until AFTER a serach occurs -->
     <% gf_places.each do |place|  %>
     <div class="place">
       <p class="name"><%=place["name"]%></p>
