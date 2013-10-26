@@ -1,23 +1,20 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css" />
+ <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
  <title>GF Food Finder </title>
 </head>
 <body>
-  <h1>GF Food Finder</h1>
-  <p>Are you in a new city and afriad of starving? I can try to help. But I make no promises.</p>
+
   <form>
-    <label for="craving">What are you in the mood for?</label>
-    <input type="text", name="craving" />
-    <label for="location">Where are you?</label>
-    <input type="text", name="location" />
-    <input type="submit", value="Find me food!" />
+    <input type="text" name="craving" value="WHAT ARE YOU HUNGRY FOR?"/>
+    <input class="search-box"type="text" name="location" value="WHERE ARE YOU?"/>
+    <input class="button" type="submit" value="GET THE NOMS" />
   </form>
+
   <div>
-    <% if location.nil? && craving.nil? %>
-      <p>You haven't searched for anything yet.</p>
-    <% else %><!--this is to prevent errors due to gf_places not being defined until AFTER a serach occurs -->
-    <% gf_places.each do |place|  %>
+    <% unless location.nil? && craving.nil? %>
+    <% gf_places.each do |place| %>
     <div class="place">
       <p class="name"><%=place["name"]%></p>
       <div class="address">
