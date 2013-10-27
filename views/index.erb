@@ -1,34 +1,40 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css" />
- <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
- <title>GF Food Finder </title>
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <title>GF Food Finder </title>
 </head>
 <body>
 
   <form>
-    <input type="text" name="craving" value="WHAT ARE YOU HUNGRY FOR?"/>
-    <input class="search-box"type="text" name="location" value="WHERE ARE YOU?"/>
-    <input class="button" type="submit" value="GET THE NOMS" />
+    <input type="text" name="craving" placeholder="WHAT ARE YOU HUNGRY FOR?"/>
+    <input class="search-box"type="text" name="location" placeholder="WHERE ARE YOU?" required/>
+    <input class="button" type="submit" value="GET THE GF NOMS" />
   </form>
 
-  <div>
+  <div class="results">
     <% unless location.nil? && craving.nil? %>
+    <% if location == "" %>
+      <h3>I could pretend I know where you are, but that probably won't help you.</h3>
+    <% elsif gf_places.size == 0 %>
+      <h3>I'm really sorry about this... but, you may starve there.</h3> 
+    <%else%>
+    <h3>These places may be able to prevent starvation:</h3>
     <% gf_places.each do |place| %>
-    <div class="place">
-      <p class="name"><%=place["name"]%></p>
-      <div class="address">
-        <% place["location"]["display_address"].each do |line|%>
-        <p class="address"><%= line %></p>
-        <% end %>
-      </div>
-      <p class="phone"><%= place["display_phone"]%></p>
-      <p class="rating">Yelp rating: <%= place["rating"]%></p>
-      <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>  
-    </div>
+      <div class="place">
+        <h4 class="name"><%=place["name"]%></h4>
+          <div class="address">
+            <% place["location"]["display_address"].each do |line|%>
+              <p class="address"><%= line %></p>
+            <% end %>
+          </div> <!-- end address -->
+        <p class="phone"><%= place["display_phone"]%></p>
+        <p class="rating">Yelp rating: <%= place["rating"]%></p>
+        <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>
+      </div> <!-- end of place -->
     <%end%>
     <%end%>
-
-  </div>
+    <%end%>
+  </div> <!--end results -->
 </body>
 </html>
