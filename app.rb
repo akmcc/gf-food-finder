@@ -1,4 +1,3 @@
-require './restaurants'
 
 class FoodFinderApp < Sinatra::Base
 
@@ -6,14 +5,19 @@ class FoodFinderApp < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  get "/" do
+
+get "/" do
+  @display_results = false
+  erb :index
+end
+
+post "/" do
     craving = params['craving']
     location = params['location']
+     @display_results = true
     if craving && location
-      gf_places = Restaurants.new(craving, location).query_yelp["businesses"]
+      gf_places = Restaurants.new(craving, location).query_for_businesses
     end
     erb :index, locals: {gf_places: gf_places, location: location, craving: craving}
   end
-
-
 end
