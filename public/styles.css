@@ -35,7 +35,7 @@ p {
 }
 
 div.place {
-  margin: 30px 30px;
+  margin-top: 30px;
 }
 
 div.results {
@@ -51,5 +51,5 @@ h4.name {
 }
 
 p.address {
-  margin: 1px;
+  margin: 2px;
 }
