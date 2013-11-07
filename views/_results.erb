@@ -1,24 +1,22 @@
   <div class="results">
-    <% unless location.nil? && craving.nil? %>
-    <% if location == "" %>
+    <% if location.strip.empty? %>
       <h3>I could pretend I know where you are, but that probably won't help you.</h3>
     <% elsif gf_places.size == 0 %>
       <h3>I'm really sorry about this... but, you may starve there.</h3> 
     <%else%>
-    <h3>These places may be able to prevent starvation:</h3>
-    <% gf_places.each do |place| %>
-      <div class="place">
-        <h4 class="name"><%=place["name"]%></h4>
+      <h3>These places may be able to prevent starvation:</h3>
+      <% gf_places.each do |place| %>
+        <div class="place">
+          <h4 class="name"><%=place["name"]%></h4>
           <div class="address">
             <% place["location"]["display_address"].each do |line|%>
               <p class="address"><%= line %></p>
             <% end %>
           </div> <!-- end address -->
-        <p class="phone"><%= place["display_phone"]%></p>
-        <p class="rating">Yelp rating: <%= place["rating"]%></p>
-        <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>
-      </div> <!-- end of place -->
-    <%end%>
-    <%end%>
+          <p class="phone"><%= place["display_phone"]%></p>
+          <p class="rating">Yelp rating: <%= place["rating"]%></p>
+          <p class="reviews"><a  href=<%= place["url"]%> target="_blank">See reviews.</a></p>
+        </div> <!-- end of place -->
+      <%end%>
     <%end%>
   </div> <!--end results -->
