@@ -14,9 +14,7 @@ class FoodFinderApp < Sinatra::Base
     craving = params['craving']
     location = params['location']
     @display_results = true
-    if craving && location
-      gf_places = Restaurants.new(craving, location).query_for_businesses
-    end
+    gf_places = Restaurants.new(craving, location).query_for_businesses
     erb :index, locals: {gf_places: gf_places, location: location, craving: craving}
   end
 end

@@ -1,21 +1,36 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-  <title>GF Food Finder </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GF Noms</title>
 </head>
 <body>
+  <div class="container">
+    <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-6">
+            <h1>GF Food Finder</h1>
+            <p>To all my gluten-free cronies:<p>
+            <p>Eating in new cities can suck. But it doesn't have to. If a gluten-free friendly restaurant exists near you, I will try to help you find it.</p>
+          </div> <!--end column -->
+          <div class="col-md-6">
+            <div class="form">
+              <form action "/" method="POST">
+                <input type="text" name="craving" placeholder="WHAT ARE YOU HUNGRY FOR?"/>
+                <input type="text" name="location" placeholder="WHERE ARE YOU? (city, st or zipcode)" required/>
+                <input class="button" type="submit" value="GET THE GF NOMS"/>
+              </form>
+            </div> <!-- end form -->
+          </div> <!-- end colum -->
+        </div> <!-- end row -->
+    </div> <!--end jumbotron -->
+    <% if @display_results %>
+    <%= erb :_results, locals: {gf_places: gf_places, location: location, craving: craving} %>
+    <% end %>
 
-  <form action "/" method="POST">
-    <input type="text" name="craving" placeholder="WHAT ARE YOU HUNGRY FOR?"/>
-    <input type="text" name="location" placeholder="WHERE ARE YOU? (city, st or zipcode)" required/>
-    <input class="button" type="submit" value="GET THE GF NOMS"/>
-  </form>
-
-<% if @display_results %>
-  <%= erb :_results,locals: {gf_places: gf_places, location: location, craving: craving} %>
-<% end %>
-
-
+  </div> <!--end container -->
 </body>
 </html>
