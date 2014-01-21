@@ -1,9 +1,12 @@
+require 'sinatra'
+require 'json'
+require 'cgi'
+require './secrets'
+require './restaurants'
+require 'bundler'
+require './yelp'
+require 'oauth'
 
-class FoodFinderApp < Sinatra::Base
-
-  configure :development do
-    register Sinatra::Reloader
-  end
 
   get "/" do
     @display_results = false
@@ -17,4 +20,3 @@ class FoodFinderApp < Sinatra::Base
     gf_places = Restaurants.new(craving, location).query_for_businesses
     erb :index, locals: {gf_places: gf_places, location: location, craving: craving}
   end
-end
