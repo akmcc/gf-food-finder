@@ -1,3 +1,8 @@
+# $CONSUMER_KEY = ENV['CONSUMER_KEY']
+# $CONSUMER_SECRET = ENV['CONSUMER_SECRET']
+# $TOKEN = ENV['TOKEN']
+# $TOKEN_SECRET = ENV['TOKEN_SECRET']
+
 module YelpOauth
 
   def query_for_businesses
@@ -9,11 +14,11 @@ module YelpOauth
 
   def create_consumer
     api_host = 'api.yelp.com'
-    @consumer = OAuth::Consumer.new($CONSUMER_KEY, $CONSUMER_SECRET, {:site => "http://#{api_host}"})    
+    @consumer = OAuth::Consumer.new(ENV['CONSUMER_KEY'], ENV['CONSUMER_SECRET'], {:site => "http://#{api_host}"})    
   end
 
   def create_access_token
-    @access_token = OAuth::AccessToken.new(@consumer, $TOKEN, $TOKEN_SECRET)
+    @access_token = OAuth::AccessToken.new(@consumer, ENV['TOKEN'], ENV['TOKEN_SECRET'])
   end
 
   def create_path

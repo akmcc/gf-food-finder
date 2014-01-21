@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'cgi'
-require './secrets'
+# require './secrets'
 require './restaurants'
 require 'bundler'
 require './yelp'
